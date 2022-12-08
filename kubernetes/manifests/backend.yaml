@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  labels:
+    app: backend-service
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3000
+    targetPort: 3000
+  selector:
+    app: backend
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend # has to match .spec.template.metadata.labels
+  template:
+    metadata:
+      labels:
+        app: backend # has to match .spec.selector.matchLabels
+    spec:
+      containers:
+      - env:
+        - name: PORT
+          value: 3000
+        - name: NODE_ENV
+          value: development
+        - name: MONGO_DB_CONNECTION_STRING
+          value: mongodb+srv://lomzie:logmigpa@gcproject.y6ogq4t.mongodb.net/?retryWrites=true&w=majority
+        - name: MONGO_DB_NAME
+          value: gcproject 
+        - name: REDIS_URI
+          value: rediss://default:AVNS_haw2bGZ-5pgzOPMoyDr@redis-2849f33-lomztein4-10de.aivencloud.com:21831
+        name: backend
+        image: lomztein/gcp-E22-backend:latest
+        ports:
+        - containerPort: 3000
+        resources:
+          limits:
+            cpu: 250m
+          requests:
+            cpu: 100m

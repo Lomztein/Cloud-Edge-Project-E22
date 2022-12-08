@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-repository
+  labels:
+    app: user-repository
+spec:
+  type: NodePort
+  ports:
+  - port: 3010
+    targetPort: 3010
+  selector:
+    app: user-repository
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-repository
+  labels:
+    app: user-repository
+spec:
+  selector:
+    matchLabels:
+      app: user-repository # has to match .spec.template.metadata.labels
+  template:
+    metadata:
+      labels:
+        app: user-repository # has to match .spec.selector.matchLabels
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_DATABASE
+          value: coffeebreak
+        - name: MYSQL_HOST
+          value: "10.40.1.57"
+        - name: MYSQL_PASSWORD
+          value: logmigpa
+        - name: MYSQL_USER
+          value: root
+        name: user-repository
+        image: frederikbroth/cuserrepo:latest
+        ports:
+        - containerPort: 3010

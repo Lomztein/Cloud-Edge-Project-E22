@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  labels:
+    app: backend
+spec:
+  type: NodePort
+  ports:
+  - port: 60000
+    targetPort: 3000
+  selector:
+    app: backend
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    app: backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend # has to match .spec.template.metadata.labels
+  template:
+    metadata:
+      labels:
+        app: backend # has to match .spec.selector.matchLabels
+    spec:
+      containers:
+      - env:
+        - name: ROOM_MANAGER_URL
+          value: https://federicoshytte.dk
+        - name: ROOM_SERVER
+          value: https://federicoshytte.dk
+        - name: STREAM_SERVER
+          value: https://federicoshytte.dk
+        name: backend
+        image: frederikbroth/cbackend:latest
+        ports:
+        - containerPort: 3000
+        resources:
+          limits:
+            cpu: 250m
+          requests:
+            cpu: 100m

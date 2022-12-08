@@ -1,5 +1,5 @@
 const constansts = {
-    serverBaseURL: 'http://localhost:3000'
+    serverBaseURL: process.env.BACKEND_URL!
 }
 
 export default constansts;
