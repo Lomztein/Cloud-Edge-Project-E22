@@ -35,11 +35,11 @@ spec:
         - name: NODE_ENV
           value: development
         - name: MONGO_DB_CONNECTION_STRING
-          value: mongodb+srv://lomzie:logmigpa@gcproject.y6ogq4t.mongodb.net/?retryWrites=true&w=majority
+          value: mongodb://root:example@mongo-service:27017/?authMechanism=DEFAULT
         - name: MONGO_DB_NAME
           value: gcproject 
         - name: REDIS_URI
-          value: rediss://redis-cart:6379
+          value: redis-cart:6379
         name: backend
         image: lomztein/gcp-e22-backend:latest
         ports:
