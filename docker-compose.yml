@@ -21,4 +21,17 @@ services:
       - NODE_ENV=development
       - MONGO_DB_CONNECTION_STRING=mongodb+srv://lomzie:logmigpa@gcproject.y6ogq4t.mongodb.net/?retryWrites=true&w=majority
       - MONGO_DB_NAME=gcproject
-      - REDIS_URI=rediss://default:AVNS_haw2bGZ-5pgzOPMoyDr@redis-2849f33-lomztein4-10de.aivencloud.com:21831
+      - REDIS_URI=rediss://cache:6379
+
+  cache:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning
+    volumes: 
+      - cache:/data
+
+volumes:
+  cache:
+    driver: local
