@@ -1,5 +1,5 @@
 const constansts = {
-    serverBaseURL: "http://backend-service:3000"
+    serverBaseURL: "http://35.228.128.156:3000"
 }
 
 export default constansts;
