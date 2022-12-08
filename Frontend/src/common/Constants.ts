@@ -1,5 +1,5 @@
 const constansts = {
-    serverBaseURL: process.env.BACKEND_URL!
+    serverBaseURL: "http://backend-service:3000"
 }
 
 export default constansts;
