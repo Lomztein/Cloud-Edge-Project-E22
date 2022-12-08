@@ -35,7 +35,7 @@ spec:
         - name: GOOGLE_MAPS_API
           value: AIzaSyAcVpW4sh_rsN6BNV-iFJAUh7brrlwO_kM
         name: frontend
-        image: lomztein/gcp-E22-frontend:latest
+        image: lomztein/gcp-e22-frontend:latest
         ports:
         - containerPort: 80
         resources:

@@ -41,7 +41,7 @@ spec:
         - name: REDIS_URI
           value: rediss://default:AVNS_haw2bGZ-5pgzOPMoyDr@redis-2849f33-lomztein4-10de.aivencloud.com:21831
         name: backend
-        image: lomztein/gcp-E22-backend:latest
+        image: lomztein/gcp-e22-backend:latest
         ports:
         - containerPort: 3000
         resources:
