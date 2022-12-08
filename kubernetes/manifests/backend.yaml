@@ -5,7 +5,7 @@ metadata:
   labels:
     app: backend-service
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
   - port: 3000
     targetPort: 3000
