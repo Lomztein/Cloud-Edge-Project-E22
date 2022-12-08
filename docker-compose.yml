@@ -2,7 +2,7 @@ version: "3.9"  # optional since v1.27.0
 services:
   frontend:
     build: ./Frontend
-    image: lomztein/gcp-E22-frontend:latest
+    image: lomztein/gcp-e22-frontend:latest
     ports:
       - "80:80"
     depends_on:
@@ -13,7 +13,7 @@ services:
 
   backend:
     build: ./Backend
-    image: lomztein/gcp-E22-backend:latest
+    image: lomztein/gcp-e22-backend:latest
     ports:
       - "3000:3000"
     environment:
