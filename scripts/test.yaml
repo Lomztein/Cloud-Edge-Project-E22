@@ -1,0 +1,25 @@
+config:
+  target: "https://frontend-62vidsyqyq-lz.a.run.app"
+  phases:
+    - duration: 60
+      arrivalRate: 100
+      name: Warm up
+    - duration: 120
+      arrivalRate: 100
+      rampTo: 1000
+      name: Ramp up load
+    - duration: 600
+      arrivalRate: 1000
+      name: Sustained load
+
+scenarios:
+  - name: "Access main page"
+    flow:
+      - get:
+          url: "/"
+      - think: 5
+      - get:
+          url: "/consent"
+      - think: 5
+      - get:
+          url: "/main"

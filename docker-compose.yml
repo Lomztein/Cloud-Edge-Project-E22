@@ -1,16 +1,20 @@
 version: "3.9"  # optional since v1.27.0
 services:
   frontend:
+    deploy:
+      replicas: 2
     build: ./Frontend
-    image: lomztein/gcp-e22-frontend:latest
+    image: eu.gcr.io/gcp-e22-370920/cloud-edge-project-e22/frontend
     ports:
       - "80:80"
     depends_on:
-      - backend-service
+      - backend
 
-  backend-service:
+  backend:
     build: ./Backend
-    image: lomztein/gcp-e22-backend:latest
+    deploy:
+      replicas: 2
+    image: eu.gcr.io/gcp-e22-370920/cloud-edge-project-e22/backend
     depends_on:
       - cache
       - mongo
@@ -34,7 +38,7 @@ services:
 
   mongo:
     build: ./mongo
-    image: lomztein/gcp-e22-mongo:latest
+    image: eu.gcr.io/gcp-e22-370920/cloud-edge-project-e22/mongo
     restart: always
     ports:
       - '27017:27017'
